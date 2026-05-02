@@ -1,0 +1,291 @@
+.achievements-page {
+    padding: 120px 0 80px;
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.achievements-container {
+    max-width: 1300px;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 40px;
+    padding: 20px;
+}
+
+.achievement-card {
+    background: linear-gradient(145deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(212, 160, 23, 0.1);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    cursor: zoom-in;
+}
+
+.achievement-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(212, 160, 23, 0.15), 0 0 20px var(--accent-glow);
+}
+
+.achievement-image-wrapper {
+    position: relative;
+    height: 260px;
+    background: #000;
+    overflow: hidden;
+    margin: 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.achievement-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.achievement-card:hover .achievement-image {
+    transform: scale(1.15);
+}
+
+/* Floating Date Badge */
+.achievement-date {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(26, 5, 5, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.achievement-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(26, 5, 5, 0.9), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.achievement-card:hover .achievement-overlay {
+    opacity: 1;
+}
+
+.zoom-hint {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.achievement-card:hover .zoom-hint {
+    transform: translateY(0);
+}
+
+.achievement-content {
+    padding: 0 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+}
+
+.achievement-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 10px;
+}
+
+.achievement-issuer {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5), 0 0 30px var(--accent-glow);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.modal-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    height: 100%;
+}
+
+.modal-image-area {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-image-area img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.modal-details-area {
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    overflow-y: auto;
+}
+
+.modal-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.modal-details-area h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.issuer-row, .date-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.modal-description {
+    margin-top: 20px;
+}
+
+.modal-description h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.modal-description p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+@media (max-width: 992px) {
+    .modal-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-image-area {
+        height: 300px;
+    }
+    
+    .modal-details-area {
+        padding: 30px;
+    }
+    
+    .modal-details-area h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .achievement-card {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,24 @@
+/* Home Page Styles */
+
+.review-form-section {
+    padding: 60px 20px;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--card-border);
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .review-form-section {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-form-section {
+        padding: 30px 15px;
+    }
+}
