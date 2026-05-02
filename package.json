@@ -1,8 +1,8 @@
 {
-  "name": "shamverse-monorepo",
-  "private": true,
-  "workspaces": [
-    "frontend",
-    "frontend/api"
-  ]
+    "name": "shamverse-monorepo",
+    "private": true,
+    "workspaces": [
+        "frontend",
+        "frontend/api"
+    ]
 }

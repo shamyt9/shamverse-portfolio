@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ChevronLeft, CheckCircle, X, MessageCircle } from 'lucide-react';
+import { CheckCircle, X, MessageCircle } from 'lucide-react';
 import api from '../services/api';
 import './Pricing.css';
 

@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import {
     Upload,
     X,
-    Image as ImageIcon,
     AlertCircle,
     CheckCircle,
     Loader,

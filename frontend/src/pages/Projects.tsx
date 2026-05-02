@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronRight, Search, ExternalLink, Code } from 'lucide-react';
+import { Search, ExternalLink, Code } from 'lucide-react';
 import api from '../services/api';
 import './Projects.css';
 

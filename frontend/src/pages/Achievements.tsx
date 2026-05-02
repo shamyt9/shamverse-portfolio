@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Award, X, ChevronRight, MapPin } from 'lucide-react';
+import { Calendar, Award, X } from 'lucide-react';
 import api from '../services/api';
 import './Achievements.css';
 
