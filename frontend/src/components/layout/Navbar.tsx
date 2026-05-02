@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
     const [settings, setSettings] = useState<Settings>({
         siteName: 'ShamVerse',
         logo: '',
-        socialLinks: {}
+        socialLinks: {},
     });
 
     useEffect(() => {
@@ -57,10 +57,26 @@ const Navbar: React.FC = () => {
     ];
 
     const socialLinks = [
-        { icon: <FaGithub size={20} />, url: settings.socialLinks.github || 'https://github.com/shamyt9' },
-        { icon: <FaLinkedin size={20} />, url: settings.socialLinks.linkedin || 'https://www.linkedin.com/in/shamshad-ali-436917377/' },
-        { icon: <FaInstagram size={20} />, url: settings.socialLinks.instagram || 'https://www.instagram.com/eduexpress98/' },
-        { icon: <FaYoutube size={20} />, url: settings.socialLinks.youtube || 'https://youtube.com/' },
+        {
+            icon: <FaGithub size={20} />,
+            url: settings.socialLinks.github || 'https://github.com/shamyt9',
+        },
+        {
+            icon: <FaLinkedin size={20} />,
+            url:
+                settings.socialLinks.linkedin ||
+                'https://www.linkedin.com/in/shamshad-ali-436917377/',
+        },
+        {
+            icon: <FaInstagram size={20} />,
+            url:
+                settings.socialLinks.instagram ||
+                'https://www.instagram.com/eduexpress98/',
+        },
+        {
+            icon: <FaYoutube size={20} />,
+            url: settings.socialLinks.youtube || 'https://youtube.com/',
+        },
     ];
 
     return (
@@ -68,9 +84,14 @@ const Navbar: React.FC = () => {
             <div className="container nav-container">
                 <Link to="/" className="logo-container">
                     <div className="logo-photo">
-                        <img src={settings.logo || logoImg} alt={settings.siteName} />
+                        <img
+                            src={settings.logo || logoImg}
+                            alt={settings.siteName}
+                        />
                     </div>
-                    <span className="logo-text glow-text">{settings.siteName}</span>
+                    <span className="logo-text glow-text">
+                        {settings.siteName}
+                    </span>
                 </Link>
 
                 {/* Desktop Nav */}
@@ -93,11 +114,11 @@ const Navbar: React.FC = () => {
 
                     <div className="nav-socials">
                         {socialLinks.map((social, index) => (
-                            <a 
-                                key={index} 
-                                href={social.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                            <a
+                                key={index}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="nav-social-icon"
                             >
                                 {social.icon}
@@ -149,11 +170,11 @@ const Navbar: React.FC = () => {
 
                         <div className="mobile-socials">
                             {socialLinks.map((social, index) => (
-                                <a 
-                                    key={index} 
-                                    href={social.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
+                                <a
+                                    key={index}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="mobile-social-icon"
                                     onClick={() => setIsOpen(false)}
                                 >
