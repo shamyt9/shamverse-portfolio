@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Reviews from './pages/Reviews';
 import Pricing from './pages/Pricing';
+import PricingDetail from './pages/PricingDetail';
 import Achievements from './pages/Achievements';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
@@ -60,6 +61,14 @@ function App() {
                             element={
                                 <Layout>
                                     <Pricing />
+                                </Layout>
+                            }
+                        />
+                        <Route
+                            path="/pricing/:id"
+                            element={
+                                <Layout>
+                                    <PricingDetail />
                                 </Layout>
                             }
                         />

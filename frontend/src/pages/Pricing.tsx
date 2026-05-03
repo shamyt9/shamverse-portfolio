@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, X, MessageCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import api from '../services/api';
 import './Pricing.css';
 
@@ -54,9 +55,9 @@ const ImageSlider: React.FC<{ images: string[] }> = ({ images }) => {
 };
 
 export default function Pricing() {
+    const navigate = useNavigate();
     const [prices, setPrices] = useState<Price[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedPlan, setSelectedPlan] = useState<Price | null>(null);
 
     useEffect(() => {
         fetchPrices();
@@ -73,12 +74,8 @@ export default function Pricing() {
         }
     };
 
-    const handleWhatsAppContact = (plan: Price) => {
-        const phoneNumber = '918004230656';
-        const featuresList = plan.features.map((f) => `• ${f}`).join('%0A');
-        const message = `Hello ShamVerse! %0A%0AI am interested in the *${plan.serviceName}* plan.%0A%0A*Details:*%0A💰 *Price:* ₹${plan.price}%0A✨ *Features:*%0A${featuresList}`;
-
-        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    const handleCardClick = (planId: string) => {
+        navigate(`/pricing/${planId}`);
     };
 
     return (
@@ -106,7 +103,7 @@ export default function Pricing() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.1 }}
                                 className="pricing-card glow-card"
-                                onClick={() => setSelectedPlan(plan)}
+                                onClick={() => handleCardClick(plan._id)}
                                 style={{ cursor: 'zoom-in' }}
                             >
                                 <ImageSlider images={plan.images} />
@@ -157,80 +154,6 @@ export default function Pricing() {
                     </div>
                 )}
             </div>
-
-            {/* Pricing Modal */}
-            <AnimatePresence>
-                {selectedPlan && (
-                    <motion.div
-                        className="modal-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setSelectedPlan(null)}
-                    >
-                        <motion.div
-                            className="modal-content"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button
-                                className="modal-close"
-                                onClick={() => setSelectedPlan(null)}
-                            >
-                                <X size={24} />
-                            </button>
-
-                            <div className="modal-layout">
-                                <div className="modal-image-area">
-                                    <div className="modal-slider-wrapper">
-                                        <ImageSlider
-                                            images={selectedPlan.images}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="modal-details-area">
-                                    <div className="modal-badge">
-                                        Service Plan
-                                    </div>
-                                    <h2>{selectedPlan.serviceName}</h2>
-                                    <div className="modal-price-big">
-                                        ₹{selectedPlan.price}
-                                    </div>
-
-                                    <div className="modal-features-full">
-                                        <h3>Included Features:</h3>
-                                        <ul className="full-features-list">
-                                            {selectedPlan.features.map(
-                                                (feature, i) => (
-                                                    <li key={i}>
-                                                        <CheckCircle
-                                                            size={20}
-                                                            className="feature-icon"
-                                                        />
-                                                        <span>{feature}</span>
-                                                    </li>
-                                                ),
-                                            )}
-                                        </ul>
-                                    </div>
-
-                                    <button
-                                        className="modal-order-btn"
-                                        onClick={() =>
-                                            handleWhatsAppContact(selectedPlan)
-                                        }
-                                    >
-                                        <MessageCircle size={20} />
-                                        <span>Enquire Now</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </div>
     );
 }
