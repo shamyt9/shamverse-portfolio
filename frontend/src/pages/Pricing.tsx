@@ -223,7 +223,7 @@ export default function Pricing() {
                                         }
                                     >
                                         <MessageCircle size={20} />
-                                        <span>Contact on WhatsApp</span>
+                                        <span>Enquire Now</span>
                                     </button>
                                 </div>
                             </div>
