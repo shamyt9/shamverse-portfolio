@@ -31,6 +31,7 @@ const AdminSkills: React.FC = () => {
         'DevOps',
         'Tools',
         'Databases',
+        'AI / Machine Learning',
         'Other',
     ];
 
@@ -196,7 +197,16 @@ const AdminSkills: React.FC = () => {
                     <div key={skill._id} className="skill-card glow-card">
                         <div className="skill-header">
                             {skill.image && (
-                                <img src={skill.image} alt={skill.name} style={{ width: '30px', height: '30px', objectFit: 'contain', marginRight: '10px' }} />
+                                <img
+                                    src={skill.image}
+                                    alt={skill.name}
+                                    style={{
+                                        width: '30px',
+                                        height: '30px',
+                                        objectFit: 'contain',
+                                        marginRight: '10px',
+                                    }}
+                                />
                             )}
                             <h5>{skill.name}</h5>
                             <span className="category-badge">
