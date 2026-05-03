@@ -1,26 +1,8 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/api/index.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "frontend/api/index.ts"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "frontend/$1"
-    }
-  ]
+    "buildCommand": "npm install --prefix frontend/api && npm run build --prefix frontend/api && npm install --prefix frontend && npm run build --prefix frontend",
+    "outputDirectory": "frontend/dist",
+    "rewrites": [
+        { "source": "/api/(.*)", "destination": "/api" },
+        { "source": "/(.*)", "destination": "/index.html" }
+    ]
 }

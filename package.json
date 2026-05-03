@@ -1,8 +1,6 @@
 {
-    "name": "shamverse-monorepo",
-    "private": true,
-    "workspaces": [
-        "frontend",
-        "frontend/api"
-    ]
+    "name": "shamverse",
+    "scripts": {
+        "build": "npm install --prefix frontend/api && npm run build --prefix frontend/api && npm install --prefix frontend && npm run build --prefix frontend"
+    }
 }
