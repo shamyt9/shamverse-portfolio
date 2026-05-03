@@ -19,7 +19,7 @@ const Home: React.FC = () => {
                 />
             </Helmet>
             <Hero />
-            <Projects />
+            <Projects featuredOnly={true} limit={6} />
             <Skills />
             <ReviewSlider />
             <section className="review-form-section">

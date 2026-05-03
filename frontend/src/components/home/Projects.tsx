@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import './Projects.css';
 
@@ -13,7 +14,13 @@ interface Project {
   tags: string[];
 }
 
-const Projects: React.FC = () => {
+interface ProjectsProps {
+  featuredOnly?: boolean;
+  limit?: number;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ featuredOnly = false, limit = undefined }) => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,6 +37,8 @@ const Projects: React.FC = () => {
     };
     fetchProjects();
   }, []);
+
+  const displayedProjects = limit ? projects.slice(0, limit) : projects;
 
   return (
     <section id="projects" className="section-padding">
@@ -48,7 +57,7 @@ const Projects: React.FC = () => {
           {loading ? (
             <p>Loading projects...</p>
           ) : (
-            projects.map((project, index) => (
+            displayedProjects.map((project, index) => (
               <motion.div
                 key={project._id}
                 initial={{ opacity: 0, y: 30 }}
@@ -79,6 +88,22 @@ const Projects: React.FC = () => {
             ))
           )}
         </div>
+
+        {featuredOnly && limit && projects.length > limit && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="see-more-container"
+          >
+            <button 
+              className="see-more-btn"
+              onClick={() => navigate('/projects')}
+            >
+              See More Projects
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
