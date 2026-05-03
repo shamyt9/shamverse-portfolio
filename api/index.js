@@ -11,26 +11,70 @@ module.exports = async (req, res) => {
             dbInitialized = true;
             try {
                 console.log('[API] Attempting database connection...');
-                await connectDB();
+                const dbResult = await connectDB();
                 console.log('[API] Database connected successfully');
             } catch (dbError) {
-                console.warn(
-                    '[API] Database connection failed:',
-                    dbError.message,
-                );
-                console.log('[API] Continuing without database...');
-                // Don't throw - let app handle missing DB gracefully
+                console.error('[API] Database connection error:', {
+                    message: dbError.message,
+                    code: dbError.code,
+                    name: dbError.name,
+                });
+                // Still mark as initialized even if failed to prevent repeated attempts
             }
         }
 
-        // Pass request to Express app
-        app(req, res);
+        // Wrap Express app handling in a promise
+        return new Promise((resolve) => {
+            // Timeout to ensure response is sent
+            const timeout = setTimeout(() => {
+                console.warn('[API] Request handler timeout');
+                if (!res.headersSent) {
+                    res.status(500).json({ error: 'Request timeout' });
+                }
+                resolve();
+            }, 28000); // 28 second timeout (Vercel max is 30)
+
+            // Handle response completion
+            const finishHandler = () => {
+                clearTimeout(timeout);
+                console.log('[API] Response completed:', res.statusCode);
+                resolve();
+            };
+
+            res.once('finish', finishHandler);
+            res.once('close', finishHandler);
+
+            // Handle any errors
+            res.on('error', (error) => {
+                clearTimeout(timeout);
+                console.error('[API] Response error:', error.message);
+                if (!res.headersSent) {
+                    res.status(500).json({ error: 'Internal server error' });
+                }
+                resolve();
+            });
+
+            // Invoke Express app
+            try {
+                app(req, res);
+            } catch (error) {
+                clearTimeout(timeout);
+                console.error('[API] Express handler error:', error.message);
+                if (!res.headersSent) {
+                    res.status(500).json({
+                        error: 'Internal server error',
+                        details: error.message,
+                    });
+                }
+                resolve();
+            }
+        });
     } catch (error) {
-        console.error('[API] Error handling request:', error.message);
+        console.error('[API] Unexpected error:', error.message);
         if (!res.headersSent) {
             res.status(500).json({
                 error: 'Internal server error',
-                message: error.message,
+                details: error.message,
             });
         }
     }
