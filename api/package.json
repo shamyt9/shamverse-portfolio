@@ -1,7 +1,7 @@
 {
     "name": "shamverse-vercel-api",
     "version": "1.0.0",
-    "type": "module",
+    "type": "commonjs",
     "dependencies": {
         "@vercel/node": "^3.0.0",
         "bcrypt": "^6.0.0",
