@@ -8,7 +8,11 @@ const connectDB = async () => {
 
     if (!mongoUri) {
         console.error('[DB] ❌ MONGODB_URI is not defined in .env');
-        process.exit(1);
+        // In serverless environments, throw error instead of calling process.exit()
+        const error = new Error(
+            'MONGODB_URI environment variable is not defined',
+        );
+        throw error;
     }
 
     console.log('[DB] Attempting connection to MongoDB Atlas...');
