@@ -1,0 +1,273 @@
+.achievement-detail-page {
+    padding: 120px 0 80px;
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    color: var(--text-primary);
+}
+
+.detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    padding: 40px 0;
+}
+
+.detail-image-section {
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.achievement-image-large {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.detail-content-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-badge {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+.detail-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.detail-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.detail-info-row:hover {
+    border-color: var(--accent-color);
+    background: rgba(212, 160, 23, 0.05);
+}
+
+.info-icon {
+    color: var(--accent-color);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.detail-info-row div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-info-row label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+}
+
+.detail-info-row p {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.detail-description-section {
+    background: linear-gradient(
+        135deg,
+        var(--bg-secondary) 0%,
+        rgba(212, 160, 23, 0.05) 100%
+    );
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+}
+
+.detail-description-section h2 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-description-section p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.loading,
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.error {
+    gap: 30px;
+}
+
+.error p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .detail-image-section {
+        position: static;
+    }
+
+    .detail-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .achievement-detail-page {
+        padding: 80px 0 60px;
+    }
+
+    .detail-header {
+        padding: 0 15px 30px 15px;
+    }
+
+    .detail-container {
+        padding: 0 15px;
+    }
+
+    .detail-grid {
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .detail-title {
+        font-size: 1.8rem;
+    }
+
+    .detail-info-row {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .detail-info-row p {
+        font-size: 1rem;
+    }
+
+    .detail-description-section {
+        padding: 20px;
+    }
+
+    .detail-description-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .detail-description-section p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .achievement-detail-page {
+        padding: 70px 0 50px;
+    }
+
+    .detail-header {
+        padding: 0 12px 20px 12px;
+    }
+
+    .detail-title {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .detail-info-row {
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .info-icon {
+        min-width: 20px;
+    }
+
+    .detail-info-row p {
+        font-size: 0.95rem;
+    }
+
+    .detail-description-section {
+        padding: 16px;
+    }
+}

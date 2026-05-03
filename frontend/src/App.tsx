@@ -14,6 +14,7 @@ import Reviews from './pages/Reviews';
 import Pricing from './pages/Pricing';
 import PricingDetail from './pages/PricingDetail';
 import Achievements from './pages/Achievements';
+import AchievementDetail from './pages/AchievementDetail';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
 import './App.css';
@@ -77,6 +78,14 @@ function App() {
                             element={
                                 <Layout>
                                     <Achievements />
+                                </Layout>
+                            }
+                        />
+                        <Route
+                            path="/achievements/:id"
+                            element={
+                                <Layout>
+                                    <AchievementDetail />
                                 </Layout>
                             }
                         />
